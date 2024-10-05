@@ -1,0 +1,151 @@
+@use '../utilities/variables.scss' as V;
+@use '../utilities/mixins.scss' as M;
+
+// Error toast variables
+$error-text-color: rgb(136, 42, 42);
+$error-bg-color: rgba(238, 180, 180, 0.9);
+
+main {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+
+    section {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.weather-display {
+    @include M.flex-settings(row, space-between, nowrap, flex-end);
+
+    color: #fff;
+    width: 65vw;
+    height: 100vh;
+    padding: 50px;
+    text-align: center;
+
+    &__img {
+        width: 75px;
+        height: 75px;
+    }
+
+    &__temp {
+        font-size: 100px;
+    }
+
+    &__city {
+        font-size: 40px;
+    }
+    
+    &__time,
+    &__description {
+        font-size: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+//Alert-Error
+.error-box {
+    position: absolute;
+    top: 10px;
+    left: 0;
+
+    display: none;
+
+    background: $error-bg-color;
+    color: $error-text-color;
+    
+    padding: 25px;
+    max-width: 375px;
+
+    border-radius: 4px;
+    border-right: 8px solid $error-text-color;
+
+    &__text {
+        font-size: 20px;
+        margin-right: 15px;
+    }
+    
+    &__icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    &--show {
+        @include M.flex-settings(row, space-between, nowrap);
+        animation: scale-horizontal 0.25s;
+    }
+}
+
+@keyframes scale-horizontal {
+    0% {
+        transform: scaleX(.4);
+        transform-origin: left center;
+    }
+    100% {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .weather-display__city {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .weather-display {
+        width: 100%;
+        height: 35vh;
+        padding: 0 25px;
+    
+        &__time, &__description {
+            font-size: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 648px) {
+    .weather-display {
+        &__img {
+            width: 55px;
+            height: 55px;
+        }
+    
+        &__temp {
+            font-size: 75px;
+        }
+    
+        &__city {
+            font-size: 25px;
+        }
+        
+        &__time,
+        &__description {
+            font-size: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .weather-display {
+        padding: 0 15px;
+
+        &__temp {
+            font-size: 70px;
+        }
+    
+        &__city {
+            font-size: 20px;
+        }
+    }
+
+    .error-box {
+        padding: 10px 20px;
+        max-width: 325px;
+    }
+}

@@ -1,0 +1,25 @@
+@use './utilities/_variables' as V;
+
+//LoadingSpinner
+@use './layouts/_LoadingSpinner.scss';
+
+//WeatherDisplay
+@use './layouts/_WeatherDisplay.scss';
+
+//Sidebar
+@use './layouts/_Sidebar.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "roboto", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+    user-select: none;
+}
+
+body{
+    background: linear-gradient(to right, V.$first-bg-color, V.$second-bg-color);
+}

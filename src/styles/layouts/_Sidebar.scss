@@ -1,0 +1,179 @@
+@use '../utilities/variables.scss' as V;
+@use '../utilities/mixins.scss' as M;
+
+$sidebar-bg-color: rgba(110,110,100,0.25);
+$sidebar-border-color: rgba(255,255,255,0.18);
+$sidebar-shadow-color: rgba(0,0,0,0.3);
+$sidebar-text-color: #d8d8d8;
+$sidebar-text-hover-color: #eeeeee;
+
+$search-box-color: #4d4d4d;
+$search-button-bg-color: #c3dee9;
+$search-button-bg-hover-color: #a3cfe0;
+
+$search-history-border: 1px solid rgb(255,255,255,0.6);
+
+.sidebar {
+    @include M.flex-settings(column);
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35vw;
+    height: 100vh;
+    border: 1px solid $sidebar-border-color;
+    box-shadow: 0 8px 32px 0 $sidebar-shadow-color;
+    background-color: $sidebar-bg-color;
+    color: $sidebar-text-color;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow-y: auto;
+
+    z-index: 1;
+
+    &__title {
+        font-size: 22px;
+    }
+    
+
+    &__search-box {
+        @include M.flex-settings(row, space-evenly);
+        width: 30vw;
+        height: 60px;
+        margin: 20px 0;
+        background: #fff;
+        color: $search-box-color;
+        border-radius: 50px;
+        opacity: 0.6;
+
+        * {
+            border: none;
+            font-size: 22px;
+        }
+
+        &__icon {
+            margin-top: -2.5px;
+            width: 25px;
+            height: 25px;
+        }
+
+        &__form {
+            @include M.flex-settings(row, space-between);
+
+            width: 75%;
+            height: 60px;
+            border-radius: 50px;
+        }
+
+        &__input {
+            width: 85%;
+            height: 60px;
+        }
+
+        &__button{
+            @include M.flex-settings(row, center);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: V.$first-bg-color;
+            background-color: $search-button-bg-color;
+            cursor: pointer;
+        }
+    }
+    
+    &__search-history {
+        &__list {
+            width: 25vw;
+            padding-bottom: 1em;
+            margin: 2em 0;
+            border-bottom: $search-history-border;
+
+            &__item {
+                margin: 2.5em 0;
+                cursor: pointer;
+
+                &:hover {
+                    color: $sidebar-text-hover-color;
+                }
+            }
+        }
+    }
+
+    &__weather-details {
+        @include M.flex-settings(column, flex-start, nowrap, flex-start);
+        width: 25vw;
+        margin: 2em 0;
+
+        &__detail {
+            @include M.flex-settings(row, flex-start, nowrap, flex-start);
+            margin: 1em 0;
+
+            &__icon {
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+                align-self: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .sidebar__search-box__input {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .sidebar {
+        @include M.flex-settings(row, center, wrap);
+        top: 35vh;
+        width: 100%;
+        height: 70%;
+
+        &__search-box {
+            min-width: 70vw;
+            margin: 20px 100px;
+        }
+    
+        &__search-history { 
+            margin: 2em 0;
+
+            &__list {
+                min-width: 30vw;
+                border: none;
+            }
+        }
+        
+        &__weather-details {
+            min-width: 25vw;
+            height: 347px;
+        }
+    }
+}
+
+@media screen and (max-width: 648px) {
+    .sidebar {
+        @include M.flex-settings(column);
+
+        &__search-box {
+            margin: 20px 0;
+
+            &__input {
+                font-size: 15px;
+            }
+        }
+    
+        &__search-history {
+            margin: 0;
+
+            &__list {
+                width: 50vw;
+                border-bottom: $search-history-border;
+            }
+        }
+    
+        &__weather-details {
+            width: 50vw;
+        }
+    }
+}
